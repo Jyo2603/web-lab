@@ -1,0 +1,29 @@
+<html><body>
+
+<h3>Add Internship</h3>
+<form action="/add" method="post">
+  <input name="id" placeholder="ID"><br>
+  <input name="name" placeholder="Name"><br>
+  <input name="company" placeholder="Company"><br>
+  <input name="duration" placeholder="Duration"><br>
+  <input name="status" placeholder="Status"><br>
+  <button>Add</button>
+</form>
+
+<h3>Update Status</h3>
+<form onsubmit="update(); return false;">
+  <input id="sid" placeholder="ID">
+  <button>Done</button>
+</form>
+
+<h3><a href="/infosys">View Infosys Interns</a></h3>
+
+<script>
+function update() {
+  fetch('/done/' + sid.value, { method: 'PUT' })
+    .then(r => r.text())
+    .then(alert);
+}
+</script>
+
+</body></html>

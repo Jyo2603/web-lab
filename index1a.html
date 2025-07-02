@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+let t = prompt("Enter text"), r = "", v = "aeiou";
+for (let c of t)
+  r += v.includes(c.toLowerCase()) || c === " " ? c : c + "o" + c;
+alert(r);
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Pluralize</h3>
+  <input id="noun" placeholder="Noun">
+  <input id="num" type="number" placeholder="Number">
+  <button onclick="go()">Go</button>
+  <p id="out"></p>
+
+  <script>
+    function go() {
+      let n = +num.value;
+      let w = noun.value;
+      let map = { dog: "dogs", goose: "geese", person: "people" };
+      if (n !== 1) w = map[w] || w + "s";
+      out.textContent = n + " " + w;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<html><body>
+<input id="input">
+<button onclick="showMonth()">Go</button>
+<p id="output"></p>
+
+<script>
+const showMonth = (() => {
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return () => {
+    let n = Math.floor(+input.value); // converts to number and floors it
+    output.textContent = months[n - 1] || "Bad Number";
+  };
+})();
+</script>
+</body></html>

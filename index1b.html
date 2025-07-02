@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Add Complaint</h3>
+  <form action="/c" method="post">
+    <input name="id" placeholder="ID" required>
+    <input name="name" placeholder="Name" required>
+    <input name="issue" placeholder="Issue" required>
+    <button>Add</button>
+  </form>
+
+  <h3>Update Status</h3>
+  <form action="/c/update" method="post">
+    <input name="id" placeholder="ID" required>
+    <select name="status">
+      <option>Pending</option>
+      <option>Resolved</option>
+    </select>
+    <button>Update</button>
+  </form>
+
+  <h3>Pending Complaints</h3>
+  <button onclick="load()">Show</button>
+  <pre id="out"></pre>
+
+  <script>
+    function load() {
+      fetch('/c')
+        .then(res => res.json())
+        .then(data => document.getElementById('out').textContent = JSON.stringify(data, null, 2));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Add Student</h3>
+  <form action="/add" method="post">
+    <input name="USN" placeholder="USN" required>
+    <input name="Student_name" placeholder="Name" required>
+    <input name="Semester" placeholder="Semester" required>
+    <input name="Exam_fee" placeholder="Exam Fee" required>
+    <button>Add</button>
+  </form>
+
+  <h3>Delete Unpaid Students</h3>
+  <form action="/delete" method="post">
+    <button>Delete Unpaid</button>
+  </form>
+
+  <h3>All Students</h3>
+  <button onclick="view()">Show</button>
+  <pre id="out"></pre>
+
+  <script>
+    function view() {
+      fetch('/view')
+        .then(r => r.json())
+        .then(d => document.getElementById('out').textContent = JSON.stringify(d, null, 2));
+    }
+  </script>
+</body>
+</html>

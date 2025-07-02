@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html><body>
+<input id="usn" placeholder="USN"><br>
+<input id="sub" placeholder="Subject"><br>
+<input id="subcode" placeholder="Subject Code"><br>
+<input id="cie" placeholder="CIE"><br>
+<input id="see" placeholder="SEE"><br>
+<button onclick="show()">Show</button>
+<p id="out"></p>
+
+<script>
+    function student(usn, subject, cie, see) {
+      return function() {
+        return "USN: " + usn + " | Subject: " + subject + " | Total: " + (+cie + +see);
+      };
+    }
+
+    function show() {
+      const display = student(usn.value, sub.value, cie.value, see.value);
+      out.textContent = display();
+    }
+  </script>
+</body>
+</html>
