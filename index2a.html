@@ -1,20 +1,27 @@
-<html><body>
-<input id="input">
-<button onclick="displayMonth()">Go</button>
-<p id="output"></p>
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Enter month number (1–12):</h3>
+<input id="num">
+<button onclick="showMonth()">Go</button>
+<p id="out"></p>
 
 <script>
-function createShowMonth() {
-  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-
-  function displayMonth() {
-    let n = Math.floor(+input.value);
-    output.textContent = months[n - 1] || "Bad Number";
+  function getMonthName(n) {
+    return function() {
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return months[n - 1] || "Bad Number";
+    };
   }
 
-  return displayMonth;
-}
-
-const displayMonth = createShowMonth(); // Closure happens here
+  function showMonth() {
+    const num = Math.floor(+document.getElementById("num").value);
+    const name = getMonthName(num)();  // call the closure
+    document.getElementById("out").textContent = name;
+  }
 </script>
-</body></html>
+
+</body>
+</html>
