@@ -6,7 +6,7 @@
 <input id="cie" placeholder="CIE"><br>
 <input id="see" placeholder="SEE"><br>
 <button onclick="show()">Show</button>
-<p id="out"></p>
+<p id="output"></p>
 
 <script>
     function student(usn, subject, cie, see) {
@@ -17,7 +17,7 @@
 
     function show() {
       const display = student(usn.value, sub.value, cie.value, see.value);
-      out.textContent = display();
+      output.textContent = display();
     }
   </script>
 </body>
