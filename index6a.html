@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <script src="react/react.development.js"></script>
+  <script src="react/react-dom.development.js"></script>
+  <script src="react/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function App() {
+      const [text, setText] = React.useState('');
+
+      return (
+        <div>
+          <label>Username: </label>
+          <input value={text} onChange={e => setText(e.target.value)} />
+          <h1>{text}</h1>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

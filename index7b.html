@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Add Enrollment</h2>
+  <form action="/add" method="post">
+    <input name="Student_ID" placeholder="Student ID" required><br>
+    <input name="Name" placeholder="Name" required><br>
+    <input name="Course_Name" placeholder="Course Name" required><br>
+    <input name="Duration" placeholder="Duration" required><br>
+    <input name="Status" placeholder="Status (active/completed)" required><br>
+    <button>Add</button>
+  </form>
+
+  <h2>Mark Completed</h2>
+  <form onsubmit="markComplete(); return false;">
+    <input id="enrollInput" placeholder="Student ID or Course Name" required>
+    <button>Complete</button>
+  </form>
+
+  <h2>Show Active Enrollments</h2>
+  <button onclick="showActive()">View</button>
+  <pre id="output"></pre>
+
+  <script>
+    function markComplete() {
+      fetch('/complete/' + enrollInput.value, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' }
+      }).then(r => r.text()).then(alert);
+    }
+
+    function showActive() {
+      fetch('/active')
+        .then(r => r.json())
+        .then(data => output.textContent = JSON.stringify(data, null, 2));
+    }
+  </script>
+</body>
+</html>

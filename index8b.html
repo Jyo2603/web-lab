@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Add Product</h2>
+  <form action="/add" method="post">
+    <input name="Product_ID" placeholder="Product ID" required><br>
+    <input name="Name" placeholder="Name" required><br>
+    <input name="Price" type="number" placeholder="Price" required><br>
+    <input name="Discount" type="number" placeholder="Discount (%)" required><br>
+    <input name="Stock" type="number" placeholder="Stock" required><br>
+    <button>Add</button>
+  </form>
+
+  <h2>Products with Final Price < ₹1000</h2>
+  <button onclick="view()">Show</button>
+  <pre id="out"></pre>
+
+  <script>
+    function view() {
+      fetch('/cheap')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('out').textContent = JSON.stringify(data, null, 2);
+        });
+    }
+  </script>
+</body>
+</html>

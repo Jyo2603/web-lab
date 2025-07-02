@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Add Hospital</h3>
+  <form action="/add" method="post">
+    <input name="Hospital_ID" placeholder="Hospital ID" required><br>
+    <input name="Name" placeholder="Name" required><br>
+    <input name="Location" placeholder="Location" required><br>
+    <input name="Total_Beds" type="number" placeholder="Total Beds" required><br>
+    <input name="Occupied_Beds" type="number" placeholder="Occupied Beds" required><br>
+    <button>Add</button>
+  </form>
+
+  <h3>Admit Patient</h3>
+  <form onsubmit="admit(); return false;">
+    <input id="Hospital_ID" placeholder="Hospital ID" required>
+    <button>Admit</button>
+  </form>
+
+  <h3>Hospitals with < 10 Available Beds</h3>
+  <button onclick="view()">Show</button>
+  <pre id="out"></pre>
+
+  <script>
+    function admit() {
+      fetch('/admit/' + Hospital_ID.value, { method: 'POST' })
+        .then(r => r.text()).then(alert);
+    }
+
+    function view() {
+      fetch('/lowbeds').then(r => r.json())
+        .then(d => out.textContent = JSON.stringify(d, null, 2));
+    }
+  </script>
+</body>
+</html>

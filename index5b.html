@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html>
 <body>
+  <h3>Add Student</h3>
+  <form action="/add" method="post">
+    <input name="name" placeholder="Name" required><br>
+    <input name="usn" placeholder="USN" required><br>
+    <input name="dept" placeholder="Department" required><br>
+    <input name="grade" placeholder="Grade" required><br>
+    <button>Add</button>
+  </form>
 
-<h3>Add Student</h3>
-<form action="/add" method="post">
-  <input name="name" placeholder="Name"><br>
-  <input name="usn" placeholder="USN"><br>
-  <input name="grade" placeholder="Grade"><br>
-  <button>Add</button>
-</form>
+  <h3>Update Grade by USN</h3>
+  <form onsubmit="update(); return false;">
+    <input id="usn" placeholder="USN" required>
+    <input id="grade" placeholder="New Grade" required>
+    <button>Update</button>
+  </form>
 
-<h3>Update Grade</h3>
-<form onsubmit="update(); return false;">
-  <input id="usn" placeholder="USN">
-  <input id="grade" placeholder="New Grade">
-  <button>Update</button>
-</form>
+  <h3>All Students</h3>
+  <button onclick="view()">Show</button>
+  <pre id="out"></pre>
 
-<h3><a href="/all">View All Students</a></h3>
+  <script>
+    function update() {
+      fetch('/update/' + usn.value, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ grade: grade.value })
+      })
+      .then(r => r.text())
+      .then(alert);
+    }
 
-<script>
-function update() {
-  fetch('/update/' + usn.value, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ grade: grade.value })
-  })
-  .then(res => res.text())
-  .then(msg => alert(msg));
-}
-</script>
-
+    function view() {
+      fetch('/view')
+        .then(r => r.json())
+        .then(d => out.textContent = JSON.stringify(d, null, 2));
+    }
+  </script>
 </body>
 </html>
