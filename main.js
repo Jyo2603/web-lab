@@ -14,3 +14,9 @@ q.enqueue(200);
 console.log("Queue:", q.display());
 console.log("Dequeued:", q.dequeue());
 console.log("Queue after dequeue:", q.display());
+
+/* package.json
+{
+  "type": "module"
+}
+*/
