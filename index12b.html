@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Add Student</h3>
+  <form action="/student" method="post">
+    <input name="Student_ID" placeholder="Student ID" required>
+    <input name="Name" placeholder="Name" required>
+    <input name="Subject" placeholder="Subject" required>
+    <input name="Marks" placeholder="Marks" type="number" required>
+    <button>Add Student</button>
+  </form>
+
+  <h3>View Not Eligible Students</h3>
+  <button onclick="load()">Show</button>
+  <pre id="output"></pre>
+
+  <script>
+    function load() {
+      fetch('/student/not-eligible')
+        .then(res => res.json())
+        .then(data => document.getElementById('output').textContent = JSON.stringify(data, null, 2));
+    }
+  </script>
+</body>
+</html>
