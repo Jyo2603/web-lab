@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Add Startup Idea</h3>
+  <form action="/startup" method="post">
+    <input name="ID" placeholder="ID" required>
+    <input name="Team_Name" placeholder="Team Name" required>
+    <input name="Title" placeholder="Title" required>
+    <input name="Domain" placeholder="Domain" required>
+    <input name="Funding_Required" placeholder="Funding in ₹ (e.g., 600000)" type="number" required>
+    <button>Add</button>
+  </form>
+
+  <h3>Show EdTech Startups Needing > ₹5 Lakhs</h3>
+  <button onclick="load()">Show</button>
+  <pre id="output"></pre>
+
+  <script>
+    function load() {
+      fetch('/startup/edtech')
+        .then(res => res.json())
+        .then(data => document.getElementById('output').textContent = JSON.stringify(data, null, 2));
+    }
+  </script>
+</body>
+</html>
