@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Add Student Attendance</h3>
+  <form action="/student" method="post">
+    <input name="Student_ID" placeholder="Student ID" required>
+    <input name="Name" placeholder="Name" required>
+    <input name="Course" placeholder="Course" required>
+    <input name="Total_Attendance" placeholder="Total Classes" type="number" required>
+    <input name="Classes_Attended" placeholder="Classes Attended" type="number" required>
+    <button>Add Student</button>
+  </form>
+
+  <h3>View Low Attendance (below 75%)</h3>
+  <button onclick="load()">Show</button>
+  <pre id="output"></pre>
+
+  <script>
+    function load() {
+      fetch('/student/low-attendance')
+        .then(res => res.json())
+        .then(data => document.getElementById('output').textContent = JSON.stringify(data, null, 2));
+    }
+  </script>
+</body>
+</html>
